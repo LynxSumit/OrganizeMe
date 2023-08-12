@@ -71,7 +71,7 @@ try {
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
-              marginRight : 5
+              marginRight : 7
             }}
           >
          OrganizeMe
@@ -154,7 +154,7 @@ isAuthenticated ?
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: 'inherit',
-           marginLeft : '3rem',
+            marginLeft : 1,
               textDecoration: 'none',
             }}
           >

@@ -154,7 +154,7 @@ isAuthenticated ?
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: 'inherit',
-           marginLeft : '6rem',
+           marginLeft : '3rem',
               textDecoration: 'none',
             }}
           >

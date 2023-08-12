@@ -1,0 +1,41 @@
+* {
+ 
+  margin: 0 ;
+  padding: 0;
+ 
+
+ 
+}
+.App{
+
+
+&::selection{
+    background: transparent;
+    color: rgb(227, 117, 38);
+}
+}
+
+.mytask{
+  &::-webkit-scrollbar{
+    display: none;
+}
+  ::selection{
+    background: rgba(57, 57, 130, 0.393);
+    color: whitesmoke;
+    margin-bottom: 2rem;
+}
+
+}
+
+.title{
+  font-weight: bolder;
+  margin-bottom: 2rem;
+  
+}
+.mytasks{
+  align-items: center;
+margin-top: 4rem;
+  display: flex;
+  justify-content: center;
+
+}

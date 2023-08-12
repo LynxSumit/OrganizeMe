@@ -8,7 +8,7 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-
+import {Checklist} from '@mui/icons-material';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link, useNavigate } from 'react-router-dom';
@@ -56,7 +56,7 @@ try {
     <AppBar position="static" >
       <Container  sx={{bgcolor : 'text.secondary', height: '5rem' , alignItems : 'center', display : 'flex' , }} maxWidth="xl">
         <Toolbar  disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <Checklist sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
         
             variant="h6"
@@ -69,13 +69,12 @@ try {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              
               color: 'inherit',
               textDecoration: 'none',
-             
+              marginRight : 5
             }}
           >
-            Todo
+         OrganizeMe
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }}}>
@@ -148,6 +147,8 @@ isAuthenticated ?
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
+              alignItems : 'center',
+              gap : 2,
               flexGrow: 1,
               fontFamily: 'monospace',
               fontWeight: 700,
@@ -157,7 +158,7 @@ isAuthenticated ?
               textDecoration: 'none',
             }}
           >
-            Todoo
+            OrganizeMe  <Checklist sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, gap: '20px',  }}>
          

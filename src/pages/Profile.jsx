@@ -25,7 +25,7 @@ const Profile = () => {
   return (
  
 
-    <Box container sx={{padding : '1.2rem',display : 'flex', flexDirection : 'column', justifyContent : 'center', alignItems : 'center', gap : '20px' , marginBottom : '4rem'}} rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+    <Box container sx={{padding : 4,display : 'flex', flexDirection : 'column', justifyContent : 'center', alignItems : 'center', gap : '20px' , marginBottom : '4rem'}} rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
 <Typography textAlign={"center"} fontSize={28} mt={2} sx={{textShadow : '0 0 rgba( 0 0 345 0'}}>Crafting Success, {user.name} ! Your Profile Hub for Productivity.</Typography>
     {
       loading ? <Loader/> : (

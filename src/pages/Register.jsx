@@ -63,6 +63,7 @@ try {
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
+        
        
       }}
     >

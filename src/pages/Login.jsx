@@ -72,6 +72,7 @@ const Login = () => {
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
+        padding : 4
       }}
     >
       <Typography variant="h5" mb={3}>

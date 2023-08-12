@@ -92,7 +92,7 @@ axios.get(`${server}/task/my`, {
   }
   
   return (
-    <Box className="mytask" sx={{marginBottom : '4rem'}}> <Typography textAlign={"center"} fontSize={28} mt={3} sx={{textShadow : '0 0 rgba( 0 0 345 0'}}> Embrace Productivity, {user.name} Your Task Master Awaits Your Command.</Typography>
+    <Box className="mytask" sx={{marginBottom : '4rem' , padding : 4}}> <Typography textAlign={"center"} fontSize={28} mt={3} sx={{textShadow : '0 0 rgba( 0 0 345 0'}}> Embrace Productivity, {user.name} Your Task Master Awaits Your Command.</Typography>
     
     <Container 
     sx={{

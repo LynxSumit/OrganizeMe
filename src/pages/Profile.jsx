@@ -1,60 +1,47 @@
-import  { useContext, useEffect } from 'react'
+import  { useContext, useEffect, useState } from 'react'
 import { UserContext } from '../context/User.Context'
 import Loader from '../Components/Loader'
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Unstable_Grid2';
-import { Divider, Stack, Typography } from '@mui/material';
+
 import Task from '../Components/Task';
 import { TaskContext } from '../context/Task.Context';
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(3),
-  textAlign: 'center',
-  color: theme.palette.text.primary,
-}));
 const Profile = () => {
  
   const {user ,  loading  } = useContext(UserContext)
   const {tasks , DeleteHandler , updatehandler} = useContext(TaskContext)
+  const [completed, setCompleted] = useState([]);
+  useEffect(() => {
+const completedTasks = tasks.filter(task => task.isCompleted);
+setCompleted(completedTasks);
 
-  
+  }, [tasks]);
   return (
  
 
-    <Box container sx={{padding : 4,display : 'flex', flexDirection : 'column', justifyContent : 'center', alignItems : 'center', gap : '20px' , marginBottom : '4rem'}} rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-<Typography textAlign={"center"} fontSize={28} mt={2} sx={{textShadow : '0 0 rgba( 0 0 345 0'}}>Crafting Success, {user.name} ! Your Profile Hub for Productivity.</Typography>
+    <div  style={{padding : 4,display : 'flex', flexDirection : 'column', justifyContent : 'center', alignItems : 'center', gap : '20px' , marginBottom : '4rem'}}>
+<p  className='text-center text-3xl mt-2' style={{textShadow : '0 0 rgba( 0 0 345 0'}}> Your Profile Hub for Productivity.</p>
     {
       loading ? <Loader/> : (
-        <>
-        <Grid xs={5}>
-        <Item> Name :     {user.name}</Item>
-      </Grid>
-      <Grid xs={6}>
-        <Item>Email : {user.email}</Item>
-      </Grid>
-      </>
+       <div className='bg-gray-800 flex flex-col px-5 py-4 mx-auto rounded-md gap-4'>
+        <p className='text-lg text-slate-200'><span className='text-accent'>Name</span> : {user.name}</p>
+        <p className='text-lg text-slate-200'><span className='text-accent'>Email</span> : {user.email}</p>
+       </div>
+      
       )
     }
 
-    <Stack
-  direction="column"
-  divider={<Divider orientation="vertical" flexItem />}
-  spacing={3}
-  className="mytasks"
->
-
+<h1 className='text-center text-3xl font-bold text-teal-300 px-2 py-1 drop-shadow-md 
+   '>Completed Tasks</h1>
+   <div className='flex flex-wrap gap-4 justify-center my-10 '>
 
  {
-    tasks.map((task) => (
-      <Task key={task._id} title={task?.title} description={task.Description} isCompleted={task?.isCompleted} id={task._id} DeleteHandler={() => DeleteHandler(task._id)} updateHandler={() => updatehandler(task._id)}/>
+    completed.map((task) => (
+      <Task key={task._id} title={task?.title} description={task.Description} isCompleted={task.isCompleted} id={task._id} DeleteHandler={() => DeleteHandler(task._id)} updateHandler={() => updatehandler(task._id)}/>
     ))
    }
- </Stack>
-    </Box>
+   </div>
+
+    </div>
 
   
 

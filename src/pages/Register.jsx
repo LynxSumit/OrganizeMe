@@ -11,7 +11,7 @@ import  { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios"
 import { server } from "../main";
-import toast from "react-hot-toast"
+import {toast} from "react-toastify"
 import { UserContext } from "../context/User.Context";
 const Register = () => {
   const {  setIsAuthenticated, loading, setLoading} = useContext(UserContext)
@@ -24,7 +24,7 @@ const Register = () => {
     e.preventDefault();
     let toastid;
 try {
-   toastid =   toast.loading("Trying...")
+   toastid =   toast.loading("Trying...", {position : "top-center"})
   setLoading(true)
     const data = await axios.post(`${server}/users/new`, {
         name,
@@ -39,12 +39,12 @@ try {
     })
     navigate("/")
     toast.dismiss(toastid)
-    toast.success(data.data.message)
+    toast.success(data.data.message, {position : "bottom-center"})
     setLoading(false)
     setIsAuthenticated(true)
   } catch (error) {
     toast.dismiss(toastid)
-    toast.error("User with this email already exist")
+    toast.error("User with this email already exist", {position : "bottom-center"})
     setLoading(false)
     
     setIsAuthenticated(false)

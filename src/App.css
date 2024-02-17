@@ -6,13 +6,14 @@
 
  
 }
-.App{
+
+.App::selection{
 
 
-&::selection{
+
     background: transparent;
     color: rgb(227, 117, 38);
-}
+
 }
 
 .mytask{

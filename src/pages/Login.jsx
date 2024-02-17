@@ -7,12 +7,12 @@ import {
   InputLabel,
   Typography,
 } from "@mui/material";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/User.Context";
 import axios from "axios";
 import { server } from "../main";
-import { toast } from "react-hot-toast";
+import { toast } from "react-toastify";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,12 +25,15 @@ const Login = () => {
     ref,
     setRef,
   } = useContext(UserContext);
-  if (isAuthenticated) navigate("/");
+  useEffect(() => {
+    
+    if (isAuthenticated) navigate("/");
+  }, [isAuthenticated, navigate]);
   const submitHandler = async (e) => {
     e.preventDefault();
     let toastid;
     try {
-      toastid = toast.loading("Trying...");
+      toastid = toast.loading("Trying...", {position : "top-center"});
       setLoading(true);
       const data = await axios.post(
         `${server}/users/login`,
@@ -47,7 +50,7 @@ const Login = () => {
       );
       navigate("/");
       toast.dismiss(toastid);
-      toast.success(data.data.message);
+      toast.success(data.data.message, {position : "bottom-center"});
       setLoading(false);
       setRef(!ref);
       setIsAuthenticated(true);
@@ -55,7 +58,7 @@ const Login = () => {
       toast.dismiss(toastid);
       setRef(!ref);
       setLoading(false);
-      toast.error("Invalid email or password");
+      toast.error("Invalid email or password", {position : "bottom-center"});
       setIsAuthenticated(false);
     }
   };

@@ -16,9 +16,9 @@ import { UserContext } from '../context/User.Context';
 import { useContext, useState } from 'react';
 import axios from 'axios';
 import { server } from '../main';
-import { toast } from 'react-hot-toast';
-
-
+// import { toast } from 'react-hot-toast';
+import  { toast} from "react-toastify"
+import Logo from "../assets/checklist.png"
 
 function Header() {
     const {isAuthenticated , setIsAuthenticated} = useContext(UserContext)
@@ -29,160 +29,60 @@ try {
   await axios.get(`${server}/users/logout`,{
     withCredentials : true
   })
+  toast.success("Logged out successfully", {position : "bottom-center"})
   navigate("/login")
-  toast.success("Logged out successfully")
   setIsAuthenticated(false)
 } catch (error) {
   console.log(error)
-  toast.error(error.message)
+  toast.error(error.message, {position : "bottom-center"})
   setIsAuthenticated(true)
 }
 }
     
-    
-  const [anchorElNav, setAnchorElNav] =useState(null);
 
-
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
 
 
   return (
-    <AppBar position="static" >
-      <Container  sx={{bgcolor : 'text.secondary', height: '5rem' , alignItems : 'center', display : 'flex' , }} maxWidth="xl">
-        <Toolbar  disableGutters>
-          <Checklist sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-        
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-              marginRight : 7
-            }}
-          >
-         OrganizeMe
-          </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' }}}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-                bgcolor : 'rgba(0,0,0,0.5)',
-                
-              }}
-             
-             
-            >
+    <div className="navbar bg-gray-500">
+  <div className="flex-1">
+    <a className="btn btn-ghost   bg-slate-300 backdrop-filter text-gray-800 text-xl">Organize Me</a>
+  </div>
+  <div className="flex-none gap-2">
+    <div className="form-control">
+      <input type="text" placeholder="Search your task here..." className="input input-bordered placeholder:text-sm  w-28 md:w-auto" />
+    </div>
+    <div className="dropdown dropdown-end">
+      <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+        <div className="w-10 rounded-full">
+          <img alt="Tailwind CSS Navbar component" src={Logo} />
+        </div>
+      </label>
+      <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+        <li>
+          <Link to={"/profile"} className="justify-between">
+            Profile
             
-                <MenuItem  onClick={handleCloseNavMenu}>
-                <Link  style={{textDecoration : 'none', color: 'text.primary'}} to="/" >Home</Link>
-                </MenuItem>
-                {isAuthenticated &&
-                <MenuItem onClick={handleCloseNavMenu}>
-
-           <Link  aria-disabled={isAuthenticated} style={{textDecoration : 'none', color: 'text.primary'}}  to="/profile" >Profile</Link>
-
-                </MenuItem>
-                }
-                {
-isAuthenticated ? 
-                <MenuItem onClick={handleCloseNavMenu}>
-
-              <Link onClick={logoutHandler}  style={{textDecoration : 'none', color: 'text.primary'}}  >   Logout</Link> 
-
-                </MenuItem>
-   : <MenuItem onClick={handleCloseNavMenu}>
-   <Link   style={{textDecoration : 'none', color: 'text.primary'}}  to="/login" >Login</Link>
-   </MenuItem>
-  
-
-                }
-             
-            </Menu>
-          </Box>
-          
-          
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              alignItems : 'center',
-              gap : 2,
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-            marginLeft : 1,
-              textDecoration: 'none',
-            }}
-          >
-            OrganizeMe  <Checklist sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, gap: '20px',  }}>
-         
-                <Link  style={{textDecoration : 'none', color: 'white'}} to="/" ><Typography>Home</Typography></Link>
-              {isAuthenticated &&  <Link disabled={isAuthenticated}   style={{textDecoration : 'none', color: 'white'}}  to="/profile" ><Typography>Profile</Typography></Link> }
-                  {
-isAuthenticated ? 
-             
-              <Link   style={{textDecoration : 'none', color: 'white', alignSelf : 'flex-end'}}  onClick={logoutHandler}>
-
-                <Typography>Logout</Typography>
-              </Link>     
-   : 
-   <Link   style={{textDecoration : 'none', color: 'white'}}  to="/login" ><Typography>Login</Typography></Link>
-   
-  
-
-                }
-          </Box>
-
-    
-        </Toolbar>
-      </Container>
-    </AppBar>
+          </Link>
+        </li>
+        <li><Link to={"/"}>Home</Link></li>
+        <li>
+          <Link to={"/analytics"} className="justify-between">
+            Analytics
+            <span className="badge badge-success" >New</span>
+          </Link>
+        </li>
+        {
+   isAuthenticated &&
+        <li><Link to={"/login" } onClick={logoutHandler}>Logout</Link></li>
+     
+        }
+      </ul>
+    </div>
+  </div>
+</div>
   );
 }
 export default Header;
+
+
+

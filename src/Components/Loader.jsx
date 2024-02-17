@@ -1,16 +1,16 @@
-import React from 'react'
-import { Blocks } from 'react-loader-spinner'
+import {  Comment } from 'react-loader-spinner'
 
 const Loader = () => {
   return (
-<Blocks
-
+<Comment
   visible={true}
   height="80"
   width="80"
-  ariaLabel="blocks-loading"
+  ariaLabel="comment-loading"
   wrapperStyle={{}}
-  wrapperClass="blocks-wrapper"
+  wrapperClass="comment-wrapper"
+  color="#fff"
+  backgroundColor="#F4442E"
 />
   )
 }
